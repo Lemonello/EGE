@@ -1,5 +1,7 @@
 #pragma once
 
+#define t "\t"
+
 #include<iostream>
 #include<vector>
 #include<string>
