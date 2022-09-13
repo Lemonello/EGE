@@ -26,6 +26,7 @@ void task_1()//Тип 17 № 37336
 		}
 		pos_num++;
 	}
+	fin.close();
 	cout << count << t << max_sum;
 }
 
@@ -39,7 +40,7 @@ void task_2()//Тип 17 №37337
 	{
 		fin >> numbers[i];
 	}
-
+	fin.close();
 	// Переборка вектора и вывод чисел, соответствующих условиям
 
 	for (int i = 0; i < num_count; i++)
@@ -67,7 +68,7 @@ void task_3()//37340
 	file_name = { "G:\\EGE_INFO\\37340.txt" };
 	ifstream fin(file_name);
 	for (int i = 0; i < count_num; i++) fin >> numbers[i];
-
+	fin.close();
 	for (int i = 0; i < count_num; i++)
 	{
 		for (int j = i+1; j < count_num; j++)
@@ -80,6 +81,53 @@ void task_3()//37340
 				{
 					max_sum = numbers[i] + numbers[j];
 				}
+			}
+		}
+	}
+	cout << count << t << max_sum;
+}
+
+void task_4()// 37341 
+{
+	int count_num{ 10000 }, count{ 0 }, max_sum{};
+	vector<int>nums(count_num);
+	file_name={ "G:\\EGE_INFO\\37341.txt" };
+
+	ifstream fin(file_name);
+	
+	for (int i = 0; i < count_num; i++) fin >> nums[i];
+
+	for (int i = 0; i < count_num; i++)
+	{
+		for (int j=i+1;j<count_num;j++)
+		{
+			if ((nums[i] - nums[j]) % 2 == 0 &&
+				(nums[i] % 19 == 0 || nums[j] % 19 == 0))
+			{
+				count++;
+				if (nums[i] + nums[j] >max_sum) max_sum = nums[i] + nums[j];
+			}
+		}
+	}
+	cout << count << t << max_sum;
+}
+
+void task_5() //37344
+{
+	int count_nums{ 10000 }, count{ 0 }, max_sum{};
+	vector<int>nums(count_nums);
+	file_name = { "G:\\EGE_INFO\\37344.txt" };
+	ifstream fin(file_name);
+	for (int i = 0; i < count_nums;i++) fin >> nums[i];
+	fin.close();
+	for (int i = 0; i < count_nums; i++)
+	{
+		for (int j = i + 1; j < count_nums; j++)
+		{
+			if (((nums[i] * nums[j]) % 10) == 0)
+			{
+				count++;
+				if ((nums[i] + nums[j]) > max_sum) max_sum = nums[i] + nums[j];
 			}
 		}
 	}
