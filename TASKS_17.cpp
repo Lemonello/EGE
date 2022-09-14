@@ -134,6 +134,56 @@ void task_5() //37344
 	cout << count << t << max_sum;
 }
 
+void task_6() //37370
+{
+	int count_num{ 10000 }, max_diff{}, count{ 0 };
+	vector<int>nums(count_num);
+	file_name = { "G:\\EGE_INFO\\37370.txt" };
+	ifstream fin(file_name);
+	for (int i = 0; i < count_num; i++) fin >> nums[i];
+	fin.close();
+
+	for (int i = 0; i < count_num; i++)
+	{
+		for (int j = i + 1; j < count_num; j++)
+		{
+			if ((nums[i] - nums[j]) % 60 == 0 && ((nums[i] % 15)== 0 || (nums[j] % 15) == 0))
+			{
+				count++;
+				if (max_diff<(nums[i]-nums[j])) max_diff=nums[i]-nums[j];
+			}
+		}
+	}
+	cout << count << t << max_diff;
+}
+
+void task_7() //39246
+{
+	int count_vec{}, count{ 0 }, max_sum{}, number{};
+	vector<int>nums;
+	file_name = { "G:\\EGE_INFO\\39246.txt" };
+	ifstream fin(file_name);
+	while (fin)
+	{
+		fin >> number;
+		nums.push_back(number);
+	}
+	fin.close();
+	count_vec = nums.size();
+	for (int i = 0; i < count_vec-1; i++)
+	{
+		if ((nums[i] % 5 == 0 || nums[i + 1] % 5 == 0) && ((nums[i] + nums[i + 1]) % 7 == 0))
+		{
+			count++;
+			if (max_sum < (nums[i] + nums[i + 1]))
+			{
+				max_sum = nums[i] + nums[i + 1];
+			}
+		}
+	}
+	cout << count << t << max_sum;
+}
+
 
 int main()
 {
