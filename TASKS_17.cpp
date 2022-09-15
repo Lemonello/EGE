@@ -184,6 +184,44 @@ void task_7() //39246
 	cout << count << t << max_sum;
 }
 
+void task_8()//39764
+{
+	int count_nums{}, count_three{ 0 }, max_sum{0}, number{};
+	vector<double>nums;
+	file_name = { "G:\\progr\\ROAD_TO_EGE\\EGE_INFO\\39764.txt" };
+	ifstream fin(file_name);
+	while (fin)
+	{
+		fin >> number;
+		nums.push_back(number);
+	}
+	fin.close();
+
+	count_nums = nums.size();
+
+	for (int i = 0; i < count_nums - 2; i++)
+	{
+		if (nums[i]==(sqrt(pow(nums[i+1],2)+pow(nums[i+2],2)))||
+			nums[i+1] == (sqrt(pow(nums[i], 2) + pow(nums[i + 2], 2)))||
+			nums[i+2] == (sqrt(pow(nums[i + 1], 2) + pow(nums[i], 2))))
+		{
+			count_three++;
+
+			if (max_sum < (nums[i] + nums[i + 1] + nums[i + 2]))
+			{
+				max_sum = nums[i] + nums[i + 1] + nums[i + 2];
+			}
+		}
+	}
+	if (count_three == 0)
+	{
+		cout << 0 << t << 0;
+		exit(NULL);
+	}
+
+	cout << count_three <<t<< max_sum;
+}
+
 
 int main()
 {
