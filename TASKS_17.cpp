@@ -2,6 +2,8 @@
 
 string file_name;
 
+bool is_three(int number);
+
 void task_1()//Òèï 17 ¹ 37336
 {
 	vector<int> numbers;
@@ -220,6 +222,89 @@ void task_8()//39764
 	}
 
 	cout << count_three <<t<< max_sum;
+}
+
+void task_9()//40733
+{
+	int pairs{ 0 }, d{ 3 }, max_sum{}, number{}, count{}, count_av{ 0 };
+	double average{}, max_all{ 0.0 };
+	vector<int>nums;
+	file_name = { "G:\\progr\\ROAD_TO_EGE\\EGE_INFO\\40733.txt" };
+	ifstream fin(file_name);
+	while (fin)
+	{
+		fin >> number;
+		nums.push_back(number);
+		if (number % 2 == 0)
+		{
+			max_all += number;
+			count_av++;
+		}
+	}
+	fin.close();
+
+	count = nums.size();
+	average = max_all / count_av;
+
+	for (int i = 0; i < count-1; i++)
+	{
+		if (((((nums[i] % d) == 0) || ((nums[i + 1] % d) == 0))) &&
+			((nums[i] < average) || (nums[i + 1] < average)))
+		{
+			pairs++;
+
+			if (max_sum < (nums[i] + nums[i + 1])) max_sum = nums[i] + nums[i + 1];
+		}
+	}
+
+	cout << pairs << t << max_sum;
+}
+
+void task_10()//47221
+{
+	int pairs{ 0 }, max_el{}, max_sum{}, number{}, count{};
+	vector<int>nums;
+	file_name = { "G:\\progr\\ROAD_TO_EGE\\EGE_INFO\\47221.txt" };
+	ifstream fin(file_name);
+	
+	while (fin)
+	{
+		fin >> number;
+		nums.push_back(number);
+		if (is_three(number)&&(max_el<number))
+		{
+			max_el = number;
+		}
+	}
+	fin.close();
+	count = nums.size();
+
+	for (int i = 0; i < count - 1; i++)
+	{
+		if (((is_three(nums[i])&&!(is_three(nums[i+1]))|| 
+			(is_three(nums[i+1]) && !(is_three(nums[i])))) &&
+			((nums[i]*nums[i])+nums[i+1]*nums[i+1])>(max_el*max_el)))
+		{
+			pairs++;
+
+			if (max_sum < (nums[i] * nums[i] + nums[i + 1] * nums[i + 1]))
+			{
+				max_sum = (nums[i] * nums[i] + nums[i + 1] * nums[i + 1]);
+			}
+		}
+	}
+
+	cout << pairs << t << max_sum;
+}
+
+bool is_three(int number)
+{
+	string s_number = std::to_string(number), s_check = std::to_string(3);
+	if (s_number.back() == '3')
+	{
+		return true;
+	}
+	return false;
 }
 
 
